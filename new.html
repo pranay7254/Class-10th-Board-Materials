@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class 10th Board Materials</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #f0f8ff, #e6f7ff);
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, button {
+      width: 90%;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Class 10th Materials</h1>
+    <input type="text" id="name" placeholder="Name">
+    <input type="text" id="phone" placeholder="Phone Number">
+    <input type="text" id="subject" placeholder="Subject">
+    <button onclick="submitData()">Submit</button>
+  </div>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+    apiKey: "AIzaSyDg4NrMBYXl-ZXh013BNOcWyN2n2C-8rxo",
+  authDomain: "class-10th-board-materials.firebaseapp.com",
+
+  projectId: "class-10th-board-materials",
+  storageBucket: "class-10th-board-materials.firebasestorage.app",
+  messagingSenderId: "237449984895",
+  appId: "1:237449984895:web:87c2af7e989f59a362784a"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    function submitData() {
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const subject = document.getElementById('subject').value;
+
+      set(ref(db, 'students/' + phone), {
+        name: name,
+        phone: phone,
+        subject: subject
+      }).then(() => {
+        alert('Data saved!');
+      }).catch((error) => {
+        alert('Error: ' + error);
+      });
+    }
+  </script>
+</body>
+</html>
